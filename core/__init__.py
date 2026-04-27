@@ -1,0 +1,51 @@
+"""Core project classes: entities and interfaces."""
+
+from core.entities import (
+    Attendance,
+    AttendanceShema,
+    AttendanceUpdateDTO,
+    BaseAttendance,
+    BaseEvent,
+    BaseIdentifier,
+    BasePerson,
+    CardIdentifier,
+    Event,
+    EventShema,
+    EventUpdateDTO,
+    IdentifierShema,
+    IdentifierUpdateDTO,
+    Person,
+    PersonShema,
+    PersonUpdateDTO,
+    QRIdentifier,
+)
+from core.interfaces import (
+    IAttendanceRepository,
+    IEventRepository,
+    IIdentifierRepository,
+    IPersonRepository,
+)
+
+__all__ = [
+    "Attendance",
+    "AttendanceShema",
+    "AttendanceUpdateDTO",
+    "BaseAttendance",
+    "BaseEvent",
+    "BaseIdentifier",
+    "BasePerson",
+    "CardIdentifier",
+    "Event",
+    "EventShema",
+    "EventUpdateDTO",
+    "IAttendanceRepository",
+    "IEventRepository",
+    "IIdentifierRepository",
+    "IPersonRepository",
+    "IdentifierShema",
+    "IdentifierUpdateDTO",
+    "Person",
+    "PersonShema",
+    "PersonUpdateDTO",
+    "QRIdentifier",
+]
