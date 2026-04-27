@@ -1,11 +1,16 @@
 [project]
-name = "Attendance recoreder."
+name = "Attendance_recoreder"
 version = "0.1.0"
 description = "GUI app for recording attendance events."
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "pyside6>=6.11.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
 ]
 
 [tool.ruff]
