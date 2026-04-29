@@ -19,6 +19,7 @@ from core.entities import (
     PersonUpdateDTO,
     QRIdentifier,
 )
+from core.init_database import init_database
 from core.interfaces import (
     IAttendanceRepository,
     IEventRepository,
@@ -48,4 +49,5 @@ __all__ = [
     "PersonShema",
     "PersonUpdateDTO",
     "QRIdentifier",
+    "init_database",
 ]
