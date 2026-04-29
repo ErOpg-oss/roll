@@ -1,5 +1,5 @@
 [project]
-name = "Attendance_recoreder"
+name = "Attendance_recorder"
 version = "0.1.0"
 description = "GUI app for recording attendance events."
 readme = "README.md"
@@ -12,6 +12,9 @@ dependencies = [
 dev = [
     "pytest>=9.0.3",
 ]
+
+[project.scripts]
+attendance_recorder = "attendance_recorder.__main__:main"
 
 [tool.ruff]
 line-length = 88
