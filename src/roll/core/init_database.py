@@ -21,7 +21,7 @@ def init_database() -> QSqlDatabase:
     if not db.open():
         logging.error(f"SQL Error: {db.lastError().text()}")
 
-    _create_schema_if_needed(db)
+    # _create_schema_if_needed(db)
 
     return db
 
@@ -29,19 +29,7 @@ def init_database() -> QSqlDatabase:
 def _create_schema_if_needed(db: QSqlDatabase) -> None:
     query = QSqlQuery(db)
     sql = """
-    CREATE TABLE IF NOT EXISTS books (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        author TEXT NOT NULL,
-        year INTEGER,
-        isbn TEXT,
-        genre TEXT,
-        status TEXT NOT NULL DEFAULT 'to_read',
-        rating INTEGER DEFAULT 0,
-        pages INTEGER,
-        notes TEXT,
-        added_at TEXT NOT NULL DEFAULT (datetime('now'))
-    )
+
     """
     if not query.exec(sql):
         logging.error(f"SQL Error: {query.lastError().text()}")

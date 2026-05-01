@@ -1,6 +1,6 @@
 """Core project classes: entities and interfaces."""
 
-from core.entities import (
+from roll.core.entities import (
     Attendance,
     AttendanceShema,
     AttendanceUpdateDTO,
@@ -19,8 +19,8 @@ from core.entities import (
     PersonUpdateDTO,
     QRIdentifier,
 )
-from core.init_database import init_database
-from core.interfaces import (
+from roll.core.init_database import init_database
+from roll.core.interfaces import (
     IAttendanceRepository,
     IEventRepository,
     IIdentifierRepository,

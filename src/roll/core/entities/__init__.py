@@ -14,21 +14,21 @@ Provides:
     Person, PersonUpdateDTO for person data.
 """
 
-from core.entities.attendance import (
+from roll.core.entities.attendance import (
     Attendance,
     AttendanceShema,
     AttendanceUpdateDTO,
     BaseAttendance,
 )
-from core.entities.event import BaseEvent, Event, EventShema, EventUpdateDTO
-from core.entities.identifier import (
+from roll.core.entities.event import BaseEvent, Event, EventShema, EventUpdateDTO
+from roll.core.entities.identifier import (
     BaseIdentifier,
     CardIdentifier,
     IdentifierShema,
     IdentifierUpdateDTO,
     QRIdentifier,
 )
-from core.entities.person import BasePerson, Person, PersonShema, PersonUpdateDTO
+from roll.core.entities.person import BasePerson, Person, PersonShema, PersonUpdateDTO
 
 __all__ = [
     "Attendance",

@@ -7,7 +7,7 @@ Provides:
     IPersonRepository
 """
 
-from core.interfaces.repositories import (
+from roll.core.interfaces.repositories import (
     IAttendanceRepository,
     IEventRepository,
     IIdentifierRepository,

@@ -1,5 +1,5 @@
 [project]
-name = "Attendance_recorder"
+name = "roll"
 version = "0.1.0"
 description = "GUI app for recording attendance events."
 readme = "README.md"
@@ -14,7 +14,7 @@ dev = [
 ]
 
 [project.scripts]
-attendance_recorder = "attendance_recorder.__main__:main"
+roll = "roll.__main__:main"
 
 [tool.ruff]
 line-length = 88
@@ -50,7 +50,7 @@ convention = "google"
 max-complexity = 10
 
 [tool.basedpyright]
-include = ["."]
+include = ["src/roll/"]
 typeCheckingMode = "all"
 pythonVersion = "3.14"
 
@@ -68,4 +68,8 @@ extraPaths = ["."]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["."] 
+pythonpath = ["src/roll/"] 
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

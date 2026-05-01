@@ -11,7 +11,7 @@ from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from core.entities import BaseAttendance, BaseEvent, BaseIdentifier, BasePerson
+    from roll.core.entities import BaseAttendance, BaseEvent, BaseIdentifier, BasePerson
 
 
 class IAttendanceRepository(ABC):
