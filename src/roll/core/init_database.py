@@ -21,15 +21,23 @@ def init_database() -> QSqlDatabase:
     if not db.open():
         logging.error(f"SQL Error: {db.lastError().text()}")
 
-    # _create_schema_if_needed(db)
+    query = QSqlQuery()
+    if not query.exec("PRAGMA foreign_keys = ON;"):
+        logging.error(f"SQL Error: {db.lastError().text()}")
+
+    _create_schema_if_needed()
 
     return db
 
 
-def _create_schema_if_needed(db: QSqlDatabase) -> None:
-    query = QSqlQuery(db)
-    sql = """
+def _create_schema_if_needed() -> None:
+    root_dir = Path(__file__).parent.parent
+    sql_path = root_dir / "queries" / "on_init.sql"
 
-    """
-    if not query.exec(sql):
-        logging.error(f"SQL Error: {query.lastError().text()}")
+    query = QSqlQuery()
+    with Path(sql_path).open() as file:
+        sql_text = "".join(file.readlines())
+    queries = [q.strip() + ";" for q in sql_text.split(";") if q.strip()]
+    for sql in queries:
+        if not query.exec(sql):
+            logging.error(f"SQL Error: {query.lastError().text()}")

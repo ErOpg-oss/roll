@@ -73,3 +73,39 @@ pythonpath = ["src/roll/"]
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.sqlfluff.core]
+dialect = "sqlite"
+templater = "raw"
+max_line_length = 88
+ignore = "None"
+rules = "all" 
+
+[tool.sqlfluff.indentation]
+tab_width = 4
+indent_unit = "space"
+indented_joins = false
+indented_ctes = true
+
+[tool.sqlfluff.rules.aliasing.table]
+aliasing = "explicit"
+
+[tool.sqlfluff.rules.aliasing.column]
+aliasing = "explicit"
+
+[tool.sqlfluff.rules.aliasing.expression]
+allow_implicit_aliases = false
+
+[tool.sqlfluff.rules.capitalisation.keywords]
+capitalisation_policy = "upper"
+
+[tool.sqlfluff.rules.capitalisation.types]
+capitalisation_policy = "upper"
+
+[tool.sqlfluff.rules.capitalisation.functions]
+capitalisation_policy = "upper"
+
+[tool.sqlfluff.rules.layout.commas]
+line_position = "leading"
+
+[tool.sqlfluff.rules.structure.join_on_condition]
