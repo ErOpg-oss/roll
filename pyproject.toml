@@ -1,5 +1,5 @@
 [project]
-name = "roll"
+name = "Roll"
 version = "0.1.0"
 description = "GUI app for recording attendance events."
 readme = "README.md"
