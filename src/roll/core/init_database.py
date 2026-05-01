@@ -39,14 +39,14 @@ def init_database() -> QSqlDatabase:
 
 
 def _create_schema_if_needed() -> None:
+    logger.info("Creating tables")
     root_dir = Path(__file__).parent.parent
     sql_path = root_dir / "queries" / "on_init.sql"
+    sql_text = Path(sql_path).read_text()
+    queries = [q.strip() + ";" for q in sql_text.split(";") if q.strip()]
 
     query = QSqlQuery()
-    with Path(sql_path).open() as file:
-        sql_text = "".join(file.readlines())
-    queries = [q.strip() + ";" for q in sql_text.split(";") if q.strip()]
-    logger.info("Creating tables...")
+
     for sql in queries:
         if not query.exec(sql):
             logger.error("SQL Error: %s", query.lastError().text())

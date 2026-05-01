@@ -11,7 +11,16 @@ from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from roll.core.entities import BaseAttendance, BaseEvent, BaseIdentifier, BasePerson
+    from roll.core.entities import (
+        AttendanceUpdateDTO,
+        BaseAttendance,
+        BaseEvent,
+        BaseIdentifier,
+        BasePerson,
+        EventUpdateDTO,
+        IdentifierUpdateDTO,
+        PersonUpdateDTO,
+    )
 
 
 class IAttendanceRepository(ABC):
@@ -29,7 +38,7 @@ class IAttendanceRepository(ABC):
         """Saves new attendance in repository."""
 
     @abstractmethod
-    def update(self, attendance: BaseAttendance) -> None:
+    def update(self, attendance_id: int, attendance: AttendanceUpdateDTO) -> None:
         """Updates existing attendance info."""
 
     @abstractmethod
@@ -55,7 +64,7 @@ class IEventRepository(ABC):
         """Saves new event in repository."""
 
     @abstractmethod
-    def update(self, event: BaseEvent) -> None:
+    def update(self, event_id: int, event: EventUpdateDTO) -> None:
         """Updates existing event info."""
 
     @abstractmethod
@@ -81,7 +90,7 @@ class IPersonRepository(ABC):
         """Saves new person in repository."""
 
     @abstractmethod
-    def update(self, person: BasePerson) -> None:
+    def update(self, person_id: int, person: PersonUpdateDTO) -> None:
         """Updates existing person info."""
 
     @abstractmethod
@@ -107,7 +116,7 @@ class IIdentifierRepository(ABC):
         """Saves new identifier in repository."""
 
     @abstractmethod
-    def update(self, identifier: BaseIdentifier) -> None:
+    def update(self, identifier_id: int, identifier: IdentifierUpdateDTO) -> None:
         """Updates existing identifier info."""
 
     @abstractmethod
