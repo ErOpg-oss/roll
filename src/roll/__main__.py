@@ -1,8 +1,9 @@
+import logging
 import sys
 
 from PySide6.QtWidgets import QApplication
 
-from roll.core import init_database
+from roll.core import init_database, setup_logging
 
 
 def main() -> None:
@@ -10,6 +11,10 @@ def main() -> None:
     app = QApplication(sys.argv)
     app.setApplicationName("roll")
     app.setOrganizationName("roll")
+
+    setup_logging()
+    logger = logging.getLogger("roll")
+    logger.info("Starting program")
 
     db = init_database()
 

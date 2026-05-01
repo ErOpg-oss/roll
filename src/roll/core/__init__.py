@@ -26,6 +26,7 @@ from roll.core.interfaces import (
     IIdentifierRepository,
     IPersonRepository,
 )
+from roll.core.setup_logging import setup_logging
 
 __all__ = [
     "Attendance",
@@ -50,4 +51,5 @@ __all__ = [
     "PersonUpdateDTO",
     "QRIdentifier",
     "init_database",
+    "setup_logging",
 ]
