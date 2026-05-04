@@ -22,9 +22,15 @@ from roll.core.entities import (
 from roll.core.init_database import init_database
 from roll.core.interfaces import (
     IAttendanceRepository,
+    IAttendanceService,
     IEventRepository,
+    IEventService,
+    IIdentifierReaderService,
     IIdentifierRepository,
+    IIdentifierService,
     IPersonRepository,
+    IPersonService,
+    IVerificationService,
 )
 from roll.core.setup_logging import setup_logging
 
@@ -41,9 +47,15 @@ __all__ = [
     "EventShema",
     "EventUpdateDTO",
     "IAttendanceRepository",
+    "IAttendanceService",
     "IEventRepository",
+    "IEventService",
+    "IIdentifierReaderService",
     "IIdentifierRepository",
+    "IIdentifierService",
     "IPersonRepository",
+    "IPersonService",
+    "IVerificationService",
     "IdentifierShema",
     "IdentifierUpdateDTO",
     "Person",

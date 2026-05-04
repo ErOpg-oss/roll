@@ -13,10 +13,24 @@ from roll.core.interfaces.repositories import (
     IIdentifierRepository,
     IPersonRepository,
 )
+from roll.core.interfaces.services import (
+    IAttendanceService,
+    IEventService,
+    IIdentifierReaderService,
+    IIdentifierService,
+    IPersonService,
+    IVerificationService,
+)
 
 __all__ = [
     "IAttendanceRepository",
+    "IAttendanceService",
     "IEventRepository",
+    "IEventService",
+    "IIdentifierReaderService",
     "IIdentifierRepository",
+    "IIdentifierService",
     "IPersonRepository",
+    "IPersonService",
+    "IVerificationService",
 ]

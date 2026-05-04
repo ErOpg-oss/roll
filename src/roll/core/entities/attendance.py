@@ -30,9 +30,9 @@ class BaseAttendance(ABC):
     """Represents base attendance info."""
 
     attendance_id: int
-    status: bool
     person_id: int
     event_id: int
+    is_present: bool
 
 
 class Attendance(BaseAttendance):
