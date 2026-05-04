@@ -30,7 +30,7 @@ class IPersonService(ABC):
         pass
 
     @abstractmethod
-    def save_person(self, person: PersonUpdateDTO) -> None:
+    def update_person(self, person_id: int, person: PersonUpdateDTO) -> None:
         pass
 
     @abstractmethod
@@ -54,7 +54,7 @@ class IEventService(ABC):
         pass
 
     @abstractmethod
-    def save_event(self, event: EventUpdateDTO) -> None:
+    def update_event(self, event_id: int, event: EventUpdateDTO) -> None:
         pass
 
     @abstractmethod
@@ -80,7 +80,9 @@ class IAttendanceService(ABC):
         pass
 
     @abstractmethod
-    def save_attendance(self, attendance: AttendanceUpdateDTO) -> None:
+    def update_attendance(
+        self, attendance_id: int, attendance: AttendanceUpdateDTO
+    ) -> None:
         pass
 
     @abstractmethod
@@ -104,7 +106,9 @@ class IIdentifierService(ABC):
         pass
 
     @abstractmethod
-    def save_identifier(self, identifier: IdentifierUpdateDTO) -> None:
+    def update_identifier(
+        self, identifier_id: int, identifier: IdentifierUpdateDTO
+    ) -> None:
         pass
 
     @abstractmethod
