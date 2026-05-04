@@ -28,9 +28,9 @@ class IdentifierUpdateDTO(IdentifierShema):
 class BaseIdentifier(ABC):
     """Represents base identifier info."""
 
+    identifier_id: int
     person_id: int
     hash_value: str
-    identifier_id: int | None = None
 
 
 class QRIdentifier(BaseIdentifier):

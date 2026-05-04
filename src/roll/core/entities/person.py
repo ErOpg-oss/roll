@@ -28,9 +28,9 @@ class PersonUpdateDTO(PersonShema):
 class BasePerson(ABC):
     """Represents base person info."""
 
+    person_id: int
     label: str
-    description: str
-    person_id: int | None = None
+    description: str | None = None
 
 
 class Person(BasePerson):

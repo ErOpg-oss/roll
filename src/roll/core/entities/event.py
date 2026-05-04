@@ -20,9 +20,9 @@ class EventShema:
     """Represents event fields."""
 
     label: str | None = None
-    description: str | None = None
     start_time: datetime | None = None
     duration: timedelta | None = None
+    description: str | None = None
 
 
 @dataclass(frozen=True)
@@ -34,11 +34,11 @@ class EventUpdateDTO(EventShema):
 class BaseEvent(ABC):
     """Represents base event info."""
 
+    event_id: int
     label: str
-    description: str
     start_time: datetime
     duration: timedelta
-    event_id: int | None = None
+    description: str | None = None
 
 
 class Event(BaseEvent):

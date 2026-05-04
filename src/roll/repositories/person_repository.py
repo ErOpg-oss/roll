@@ -4,7 +4,11 @@ from typing import cast, override
 from PySide6.QtSql import QSqlQuery
 
 from roll.core import BasePerson, IPersonRepository, Person, PersonUpdateDTO
-from roll.repositories.exceptions import QueryFailedExecError, QueryFailedPrepareError
+from roll.repositories.exceptions import (
+    DTOValueError,
+    QueryFailedExecError,
+    QueryFailedPrepareError,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -37,17 +41,20 @@ class PersonRepository(IPersonRepository):
             p_label = cast("str", query.value(1))
             p_desc = cast("str", query.value(2))
 
-            return Person(p_label, p_desc, p_id)
+            return Person(p_id, p_label, p_desc)
 
         return None
 
     @override
-    def add(self, person: BasePerson) -> BasePerson:
+    def add(self, person: PersonUpdateDTO) -> None:
+        if person.label is None:
+            self._raise_on_value_error(person)
+
         query = QSqlQuery()
 
         sql = """
         INSERT INTO persons (label, description)
-        VALUES (:label, :description)
+        VALUES (:label, NULLIF(:description, ''))
         """
 
         if not query.prepare(sql):
@@ -59,18 +66,17 @@ class PersonRepository(IPersonRepository):
         if not query.exec():
             self._raise_on_exec(query)
 
-        return Person(
-            person.label, person.description, cast("int", query.lastInsertId())
-        )
-
     @override
     def update(self, person_id: int, person: PersonUpdateDTO) -> None:
+        if person.label is None:
+            self._raise_on_value_error(person)
+
         query = QSqlQuery()
 
         sql = """
         UPDATE persons
         SET label = COALESCE(:label, label),
-            description = COALESCE(:description, description)
+            description = COALESCE(NULLIF(:description, ''), description)
         WHERE person_id = :id
         """
 
@@ -121,3 +127,8 @@ class PersonRepository(IPersonRepository):
         error = query.lastError().text()
         logger.error("SQL Error: %s", error)
         raise QueryFailedExecError(error)
+
+    @staticmethod
+    def _raise_on_value_error(person: PersonUpdateDTO) -> None:
+        logger.error("Bad values person data: %s", person)
+        raise DTOValueError

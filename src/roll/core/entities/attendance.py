@@ -29,10 +29,10 @@ class AttendanceUpdateDTO(AttendanceShema):
 class BaseAttendance(ABC):
     """Represents base attendance info."""
 
+    attendance_id: int
     status: bool
     person_id: int
     event_id: int
-    attendance_id: int | None = None
 
 
 class Attendance(BaseAttendance):

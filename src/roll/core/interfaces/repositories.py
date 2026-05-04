@@ -34,7 +34,7 @@ class IAttendanceRepository(ABC):
         """
 
     @abstractmethod
-    def add(self, attendance: BaseAttendance) -> BaseAttendance:
+    def add(self, attendance: AttendanceUpdateDTO) -> None:
         """Saves new attendance in repository."""
 
     @abstractmethod
@@ -60,7 +60,7 @@ class IEventRepository(ABC):
         """
 
     @abstractmethod
-    def add(self, event: BaseEvent) -> BaseEvent:
+    def add(self, event: EventUpdateDTO) -> None:
         """Saves new event in repository."""
 
     @abstractmethod
@@ -86,7 +86,7 @@ class IPersonRepository(ABC):
         """
 
     @abstractmethod
-    def add(self, person: BasePerson) -> BasePerson:
+    def add(self, person: PersonUpdateDTO) -> None:
         """Saves new person in repository."""
 
     @abstractmethod
@@ -112,7 +112,7 @@ class IIdentifierRepository(ABC):
         """
 
     @abstractmethod
-    def add(self, identifier: BaseIdentifier) -> BaseIdentifier:
+    def add(self, identifier: IdentifierUpdateDTO) -> None:
         """Saves new identifier in repository."""
 
     @abstractmethod
