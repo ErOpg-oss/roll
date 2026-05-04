@@ -46,6 +46,32 @@ class PersonRepository(IPersonRepository):
         return None
 
     @override
+    def get_all(self) -> tuple[BasePerson, ...]:
+        query = QSqlQuery()
+
+        sql = """
+        SELECT person_id, label, description
+        FROM persons;
+        """
+
+        if not query.prepare(sql):
+            self._raise_on_prepare(query)
+
+        if not query.exec():
+            self._raise_on_exec(query)
+
+        persons: list[BasePerson] = []
+
+        if query.next():
+            p_id = cast("int", query.value(0))
+            p_label = cast("str", query.value(1))
+            p_desc = cast("str", query.value(2))
+
+            persons += [Person(p_id, p_label, p_desc)]
+
+        return tuple(persons)
+
+    @override
     def add(self, person: PersonUpdateDTO) -> None:
         if person.label is None:
             self._raise_on_value_error(person)
@@ -68,9 +94,6 @@ class PersonRepository(IPersonRepository):
 
     @override
     def update(self, person_id: int, person: PersonUpdateDTO) -> None:
-        if person.label is None:
-            self._raise_on_value_error(person)
-
         query = QSqlQuery()
 
         sql = """

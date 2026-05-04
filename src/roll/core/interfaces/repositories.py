@@ -60,6 +60,10 @@ class IEventRepository(ABC):
         """
 
     @abstractmethod
+    def get_all(self) -> tuple[BaseEvent, ...]:
+        """Returns tuple of all saved eventa."""
+
+    @abstractmethod
     def add(self, event: EventUpdateDTO) -> None:
         """Saves new event in repository."""
 
@@ -84,6 +88,10 @@ class IPersonRepository(ABC):
 
         Returns None if person is not found.
         """
+
+    @abstractmethod
+    def get_all(self) -> tuple[BasePerson, ...]:
+        """Returns tuple of all saved persons."""
 
     @abstractmethod
     def add(self, person: PersonUpdateDTO) -> None:
