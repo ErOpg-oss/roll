@@ -4,16 +4,13 @@ from typing import cast, override
 from PySide6.QtSql import QSqlQuery
 
 from roll.core import BasePerson, IPersonRepository, Person, PersonUpdateDTO
-from roll.repositories.exceptions import (
-    DTOValueError,
-    QueryFailedExecError,
-    QueryFailedPrepareError,
-)
+from roll.repositories.base_qsqlite_repository import BaseQtSQLiteRepository
+from roll.repositories.exceptions import DTOValueError
 
 logger = logging.getLogger(__name__)
 
 
-class PersonRepository(IPersonRepository):
+class PersonRepository(IPersonRepository, BaseQtSQLiteRepository):
     def __init__(self) -> None:
         """Log message on repository init."""
         logger.info("Initialized person repository")
@@ -73,8 +70,8 @@ class PersonRepository(IPersonRepository):
 
     @override
     def add(self, person: PersonUpdateDTO) -> None:
-        if person.label is None:
-            self._raise_on_value_error(person)
+        if not person.label:
+            raise DTOValueError
 
         query = QSqlQuery()
 
@@ -94,6 +91,9 @@ class PersonRepository(IPersonRepository):
 
     @override
     def update(self, person_id: int, person: PersonUpdateDTO) -> None:
+        if person.label == "":
+            raise DTOValueError
+
         query = QSqlQuery()
 
         sql = """
@@ -138,20 +138,3 @@ class PersonRepository(IPersonRepository):
             return False
 
         return True
-
-    @staticmethod
-    def _raise_on_prepare(query: QSqlQuery) -> None:
-        error = query.lastError().text()
-        logger.error("SQL Error: %s", error)
-        raise QueryFailedPrepareError(error)
-
-    @staticmethod
-    def _raise_on_exec(query: QSqlQuery) -> None:
-        error = query.lastError().text()
-        logger.error("SQL Error: %s", error)
-        raise QueryFailedExecError(error)
-
-    @staticmethod
-    def _raise_on_value_error(person: PersonUpdateDTO) -> None:
-        logger.error("Bad values person data: %s", person)
-        raise DTOValueError
