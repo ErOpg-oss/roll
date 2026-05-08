@@ -91,8 +91,12 @@ class PersonRepository(IPersonRepository, BaseQtSQLiteRepository):
         sql = """
         UPDATE persons
         SET label = COALESCE(:label, label),
-            description = COALESCE(NULLIF(:description, ''), description)
-        WHERE person_id = :id
+            description = CASE
+                WHEN :description = '' THEN NULL
+                WHEN :description IS NULL THEN description
+                ELSE :description
+            END
+        WHERE person_id = :id;
         """
 
         if not query.prepare(sql):
