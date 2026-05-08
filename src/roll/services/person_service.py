@@ -43,6 +43,5 @@ class PersonService(IPersonService):
 
     @override
     def delete_person(self, person_id: int) -> None:
-        # TODO (asnden): #001 person deletion should delete hiw identifiers or smth
         if not self.repo.delete(person_id):
             raise PersonNotFoundError
