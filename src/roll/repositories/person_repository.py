@@ -59,7 +59,7 @@ class PersonRepository(IPersonRepository, BaseQtSQLiteRepository):
 
         persons: list[BasePerson] = []
 
-        if query.next():
+        while query.next():
             p_id = cast("int", query.value(0))
             p_label = cast("str", query.value(1))
             p_desc = cast("str", query.value(2))
