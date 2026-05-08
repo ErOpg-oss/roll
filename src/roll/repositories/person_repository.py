@@ -34,11 +34,7 @@ class PersonRepository(IPersonRepository, BaseQtSQLiteRepository):
             self._raise_on_exec(query)
 
         if query.next():
-            p_id = cast("int", query.value(0))
-            p_label = cast("str", query.value(1))
-            p_desc = cast("str", query.value(2))
-
-            return Person(p_id, p_label, p_desc)
+            return self._build_person(query)
 
         return None
 
@@ -60,11 +56,7 @@ class PersonRepository(IPersonRepository, BaseQtSQLiteRepository):
         persons: list[BasePerson] = []
 
         while query.next():
-            p_id = cast("int", query.value(0))
-            p_label = cast("str", query.value(1))
-            p_desc = cast("str", query.value(2))
-
-            persons += [Person(p_id, p_label, p_desc)]
+            persons += [self._build_person(query)]
 
         return tuple(persons)
 
@@ -138,3 +130,11 @@ class PersonRepository(IPersonRepository, BaseQtSQLiteRepository):
             return False
 
         return True
+
+    @staticmethod
+    def _build_person(query: QSqlQuery) -> BasePerson:
+        p_id = cast("int", query.value(0))
+        p_label = cast("str", query.value(1))
+        p_desc = cast("str", query.value(2))
+
+        return Person(p_id, p_label, p_desc)
