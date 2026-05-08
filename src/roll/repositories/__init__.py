@@ -1,3 +1,4 @@
+from roll.repositories.event_repository import EventRepository
 from roll.repositories.exceptions import (
     DTOValueError,
     QueryFailedExecError,
@@ -7,6 +8,7 @@ from roll.repositories.person_repository import PersonRepository
 
 __all__ = [
     "DTOValueError",
+    "EventRepository",
     "PersonRepository",
     "QueryFailedExecError",
     "QueryFailedPrepareError",
