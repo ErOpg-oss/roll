@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS identifiers (
     person_id INTEGER NOT NULL,
     hash_value TEXT NOT NULL UNIQUE,
     FOREIGN KEY (person_id) REFERENCES persons (person_id)
-    ON DELETE CASCADE
+    ON DELETE CASCADE,
+    identifier_type TEXT NOT NULL CHECK (identifier_type IN ('QR', 'CARD'))
 );
 
 CREATE TABLE IF NOT EXISTS events (

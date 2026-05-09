@@ -25,6 +25,7 @@ from roll.core.entities.identifier import (
     BaseIdentifier,
     CardIdentifier,
     IdentifierShema,
+    IdentifierType,
     IdentifierUpdateDTO,
     QRIdentifier,
 )
@@ -43,6 +44,7 @@ __all__ = [
     "EventShema",
     "EventUpdateDTO",
     "IdentifierShema",
+    "IdentifierType",
     "IdentifierUpdateDTO",
     "Person",
     "PersonShema",

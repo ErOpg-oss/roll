@@ -9,6 +9,7 @@ Provides:
 
 from abc import ABC
 from dataclasses import dataclass
+from enum import Enum
 
 
 @dataclass(frozen=True)
@@ -17,6 +18,7 @@ class IdentifierShema:
 
     person_id: int | None = None
     hash_value: str | None = None
+    identifier_type: IdentifierType | None = None
 
 
 @dataclass(frozen=True)
@@ -39,3 +41,8 @@ class QRIdentifier(BaseIdentifier):
 
 class CardIdentifier(BaseIdentifier):
     """Represents id-card info."""
+
+
+class IdentifierType(Enum):
+    CARD = CardIdentifier
+    QR = QRIdentifier
