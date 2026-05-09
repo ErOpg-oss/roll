@@ -48,7 +48,7 @@ class EventRepository(IEventRepository, BaseQtSQLiteRepository):
         query = QSqlQuery()
 
         sql = """
-        SELECT event_id, labelm description, start_time, duration_seconds
+        SELECT event_id, label, description, start_time, duration_seconds
         FROM events;
         """
 
