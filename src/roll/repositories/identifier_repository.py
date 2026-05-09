@@ -86,8 +86,8 @@ class IdentifierRepository(IIdentifierRepository, BaseQtSQLiteRepository):
                 WHEN :hash_value IS NULL THEN hash_value
                 ELSE :hash_value
             END
-            person_id = :person_id
-            identifier_type = :identifier_type
+            person_id = COALESCE(:person_id, person_id)
+            identifier_type = COALESCE(:identifier_type, identifier_type)
         WHERE identifier_id = :id;
         """
 
