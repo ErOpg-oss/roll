@@ -79,7 +79,7 @@ class EventRepository(IEventRepository, BaseQtSQLiteRepository):
 
         sql = """
         INSERT INTO events (label, description, start_time, duration_seconds)
-        VALUES (:label, NULLIF(:description, ''), :start_time, "duration_seconds");
+        VALUES (:label, NULLIF(:description, ''), :start_time, :duration_seconds);
         """
 
         if not query.prepare(sql):
