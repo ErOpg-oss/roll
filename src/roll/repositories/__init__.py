@@ -1,3 +1,4 @@
+from roll.repositories.attendance_repository import AttendanceRepository
 from roll.repositories.event_repository import EventRepository
 from roll.repositories.exceptions import (
     DTOValueError,
@@ -7,6 +8,7 @@ from roll.repositories.exceptions import (
 from roll.repositories.person_repository import PersonRepository
 
 __all__ = [
+    "AttendanceRepository",
     "DTOValueError",
     "EventRepository",
     "PersonRepository",
